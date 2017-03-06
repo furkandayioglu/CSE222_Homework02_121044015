@@ -21,6 +21,10 @@ public class DatabaseArrayList {
         // Implementation detail
     }
 
+    /**
+     *
+     * @return Instance of ArrayList database
+     */
     public static DatabaseArrayList getInstance() {
         if (ourInstance == null) {
             synchronized (DatabaseArrayList.class) { // for thread safety
@@ -29,7 +33,9 @@ public class DatabaseArrayList {
         }
         return ourInstance;
     }
-
+/**
+ * Initializes ArayList Database
+ */
 
     public void initializeDatabase() {
         readLibraryStaffFromCSVFile("staffList.csv");
@@ -42,8 +48,7 @@ public class DatabaseArrayList {
         String split = ",";
         String line = ""; // hail the brother mykyong
         // csv reading code is gotten there
-        // https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
-        int i = 0;
+        // https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/int i = 0;
         try {
             userFile = new BufferedReader(new FileReader(filename));
 
@@ -55,7 +60,7 @@ public class DatabaseArrayList {
                 temp.setUserID(userInfo[2]);
                 temp.setPassword(userInfo[3]);
                 this.addUser(temp);
-                i++;
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -73,6 +78,8 @@ public class DatabaseArrayList {
                 }
             }
         }
+
+
     }
 
     public void readLibraryStaffFromCSVFile(String filename) {
@@ -81,19 +88,19 @@ public class DatabaseArrayList {
         String line = ""; // hail the brother mykyong
         // csv reading code is gotten there
         // https://www.mkyong.com/java/how-to-read-and-parse-csv-file-in-java/
-        int i = 0;
+
         try {
             userFile = new BufferedReader(new FileReader(filename));
 
             while ((line = userFile.readLine()) != null) {
-                User temp = new LibraryUser();
+                User temp = new LibraryStaff();
                 String[] userInfo = line.split(split);
                 temp.setName(userInfo[0]);
                 temp.setSurname(userInfo[1]);
                 temp.setUserID(userInfo[2]);
                 temp.setPassword(userInfo[3]);
                 this.addUser(temp);
-                i++;
+
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -114,7 +121,6 @@ public class DatabaseArrayList {
     }
 
     public void readLibraryBooksFromCSVFile(String filename) {
-
         BufferedReader bookFile = null;
         String split = ",";
         String line = ""; // hail the brother mykyong
@@ -151,6 +157,7 @@ public class DatabaseArrayList {
                 }
             }
         }
+
     }
 
     public void addUser(User newFella) throws Exception {
